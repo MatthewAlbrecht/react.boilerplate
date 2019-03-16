@@ -1,0 +1,41 @@
+/* ---------------------------------------------
+ Base Element Settings
+--------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $FONT_FAMILY_PRIMARY;
+  font-size: 1.6rem;
+}
+
+button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  border-color: $COLOR_GREY;
+  height: 0.1rem;
+  margin: 0;
+}

@@ -1,0 +1,92 @@
+/* ---------------------------------------------
+ Icon
+ --
+ A wrapper for the design's svg icons
+--------------------------------------------- */
+
+.icon {
+  display: inline-block;
+  position: relative;
+
+  // Force constrained layout to ensure predictable svg rendering
+  > * {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 100%;
+  }
+}
+
+.icon_store {
+  height: 4rem;
+  width: 13.3rem;
+
+  &Hero {
+    height: 3.2rem;
+    width: 10.6rem;
+  }
+
+  .primaryFill {
+    fill: $COLOR_LIGHTEST;
+    transition: fill .2s $EASEOUT_QUAD;
+  }
+}
+
+.icon_strava {
+  height: 5.2rem;
+  width: 12rem;
+}
+
+.icon_selectDropdown {
+  height: 1.4rem;
+  width: .9rem;
+}
+
+.icon_info {
+  .primaryFill {
+    fill: $COLOR_GREY;
+  }
+  .primaryStroke {
+    stroke: $COLOR_GREY;
+  }
+
+  &:hover {
+    .primaryFill {
+      fill: $COLOR_DARKEST;
+    }
+    .primaryStroke {
+      stroke: $COLOR_DARKEST;
+    }
+  }
+}
+
+@mixin createIconSize($size, $resolution: '') {
+  .icon_ {
+    &#{$size}#{$resolution} {
+      height: #{$size/10}rem;
+      width: #{$size/10}rem;
+    }
+  }
+}
+
+@include createIconSize(10);
+@include createIconSize(16);
+
+
+@include breakpoint(breakpoint-size('md')) {
+  .icon_store {
+    height: 3.2rem;
+    width: 10.6rem;
+
+    &Hero {
+      height: 4rem;
+      width: 13rem;
+    }
+
+    &:hover .primaryFill {
+      fill: $COLOR_GREY_LIGHTEST;
+    }
+  }
+}

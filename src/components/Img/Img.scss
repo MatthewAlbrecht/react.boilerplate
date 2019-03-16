@@ -1,0 +1,53 @@
+/* ---------------------------------------------
+ Img
+ --
+ All variations of the design's image styles
+--------------------------------------------- */
+
+.img {
+  max-width: 100%;
+}
+
+.img_92 {
+  width: 9.2rem;
+}
+
+.img_110 {
+  width: 11rem;
+}
+
+.img_133 {
+  width: 13.3rem;
+}
+
+.img_177 {
+  width: 17.7rem;
+}
+
+.img_nudgeDown1 {
+  position: relative;
+  top: .8rem;
+}
+
+@include breakpoint(breakpoint_size('md')) {
+  .img_106Md {
+    width: 10.6rem;
+  }
+
+  .img_133Md {
+    width: 13.3rem;
+  }
+
+  .img_184Md {
+    width: 18.4rem;
+  }
+
+  .img_318Md {
+    width: 31.8rem;
+  }
+
+  .img_offsetLeft5Md {
+    left: -0.5rem;
+    position: relative;
+  }
+}

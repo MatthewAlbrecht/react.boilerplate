@@ -1,0 +1,36 @@
+/* ---------------------------------------------
+ Display Utility Classes
+--------------------------------------------- */
+$displays: (
+  block: block,
+  flex: flex,
+  inline: inline,
+  inlineBlock: inline-block,
+  inlineFlex: inline-flex,
+  none: none,
+  table: table,
+  tableCell: table-cell,
+  tableRow: table-row
+) !default;
+
+@mixin display-props($display) {
+  display: $display !important;
+}
+
+@mixin build-displays($display-name, $display-value, $bp: '') {
+  .display_#{$display-name}#{capitalize($bp)} {
+    @include display-props($display-value);
+  }
+}
+
+@each $name, $value in $displays {
+  @include build-displays($name, $value);
+}
+
+@each $bp-name, $bp-size in $breakpoints {
+  @include breakpoint($bp-size) {
+    @each $name, $value in $displays {
+      @include build-displays($name, $value, $bp-name);
+    }
+  }
+}

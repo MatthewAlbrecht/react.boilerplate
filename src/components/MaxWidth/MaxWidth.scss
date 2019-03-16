@@ -1,0 +1,15 @@
+/* ---------------------------------------------
+ Max Widths
+--------------------------------------------- */
+
+@include breakpoint(breakpoint-size('md')) {
+  .maxWidth_224Md {
+    max-width: 22.4rem;
+  }
+}
+
+@include breakpoint(breakpoint-size('lg')) {
+  .maxWidth_306Lg {
+    max-width: 30.6rem;
+  }
+}

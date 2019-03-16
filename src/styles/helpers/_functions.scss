@@ -1,0 +1,29 @@
+// ---------------------------------------------
+//  Functions
+// ---------------------------------------------
+
+// Returns a multiple of the base rhythm unit of the design
+// Converts to rems
+@function rhythm($multiplier) {
+  @return #{$multiplier * $RHYTHM_BASE / 10}rem;
+}
+
+// capitalizes the first letter of a string
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+// downcases the first letter of a string
+@function uncapitalize($string) {
+  @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+// retrieves a breakpoint size based on name
+@function breakpoint-size($name) {
+  @if map-has-key($breakpoints, $name) {
+    @return map-get($breakpoints, $name);
+  }
+
+  @warn 'Breakpoint `#{$name}` not found in `$breakpoints` map.';
+  @return null;
+}

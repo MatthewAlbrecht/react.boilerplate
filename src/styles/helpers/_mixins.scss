@@ -1,0 +1,11 @@
+// ---------------------------------------------
+//  MIXINS
+// ---------------------------------------------
+
+// creates media breakpoint for a specified size
+// and puts any content inside
+@mixin breakpoint($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}

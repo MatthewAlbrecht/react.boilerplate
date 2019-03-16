@@ -1,0 +1,47 @@
+// ---------------------------------------------
+//  GLOBAL VARIABLES
+// ---------------------------------------------
+
+// ----------------------
+//  VIEWPORT SIZES
+// ----------------------
+$breakpoints: (
+  md: 750px,
+  lg: 1024px,
+  xl: 1440px
+) !default;
+
+// ----------------------
+//  COLORS
+// ----------------------
+$COLOR_LIGHTEST: #ffffff;
+$COLOR_DARKEST: #000000;
+
+$COLOR_GREY_LIGHTEST: #eaeaea;
+$COLOR_GREY_LIGHT: #d8d8d8;
+$COLOR_GREY_MEDIUM: #999999;
+$COLOR_GREY: #666666;
+$COLOR_GREY_DARK: #181818;
+$COLOR_GREY_DARKEST: #070707;
+
+$COLOR_RED: #ed1c24;
+$COLOR_RED_DARK: #c61017;
+
+// ----------------------
+//  FONTS
+// ----------------------
+
+$FONT_FAMILY_PRIMARY: 'din-pro', sans-serif;
+
+// ----------------------
+//  RHYTHM
+// ----------------------
+
+$RHYTHM_BASE: 8;
+
+// ----------------------
+//  EASING
+// ----------------------
+
+$EASEOUT_QUAD: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$EASEINOUT_QUAD: cubic-bezier(0.455, 0.03, 0.515, 0.955);;

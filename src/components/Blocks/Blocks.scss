@@ -1,0 +1,29 @@
+/* ---------------------------------------------
+ Blocks
+--------------------------------------------- */
+
+.blocks {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: rhythm(-2);
+  margin-top: rhythm(-2);
+}
+
+.blocks > * {
+  display: inline-block;
+  flex-basis: 100%;
+  padding-left: rhythm(2);
+  padding-top: rhythm(2);
+}
+
+@include breakpoint(breakpoint_size('md')) {
+  .blocks_2upMd > * {
+    flex-basis: 50%;
+  }
+}
+
+@include breakpoint(breakpoint_size('lg')) {
+  .blocks_1upLg > * {
+    flex-basis: 100%;
+  }
+}

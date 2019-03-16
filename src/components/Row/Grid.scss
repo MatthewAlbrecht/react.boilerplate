@@ -1,0 +1,200 @@
+/* ---------------------------------------------
+ Grid
+ --
+ Grid-generating code to match design's grid
+--------------------------------------------- */
+
+$grid-gutter-width: 20px !default;
+$grid-num-columns: 12 !default;
+$justifiers: (
+  start: flex-start,
+  center: center,
+  end: flex-end,
+  around: space-around,
+  between: space-between
+) !default;
+$aligners: (
+  start: flex-start,
+  center: center,
+  end: flex-end
+) !default;
+
+@mixin row-base-props() {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin col-base-props() {
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+@mixin col-width-props($index, $num-columns) {
+  flex: 0 0 percentage($index / $num-columns);
+}
+
+@mixin col-offset-props($index, $num-columns) {
+  margin-left: percentage($index / $num-columns);
+}
+
+// base row and col styles that are only defined once outside of all media queries
+.row {
+  @include row-base-props;
+}
+
+.col {
+  @include col-base-props;
+}
+
+/*
+  Build out rows for use as the base of the grid layout
+
+  The following classes are generated:
+
+  row_noWrap: Disables row wrapping when too long. (Note could cause columns to extend past row size)
+  row_gutterless: Removes gutters between columns
+  row_reverse: Reverses the order of all columns
+  row_reverseWrap: Reverses the order of columns only when wrapping occurs
+  row_justify<Start|Center|End|Around|Between>: Sets horizontal alignment for the whole row
+  row_alignItems<Start|Center|End>: Sets Vertical alignment for all items in a row
+
+  All breakpoints receive the above classes suffixed with the breakpoint name:
+  i.e. row_noWrap<Md|Lg>, row_gutterless<Md|Lg>
+
+*/
+@mixin build-row($bp, $gutter) {
+  .row {
+    margin-left: -$gutter;
+
+    &_noWrap#{$bp} {
+      flex-wrap: nowrap;
+    }
+
+    &_gutterless#{$bp} {
+      margin-left: 0;
+      margin-right: 0;
+
+      > .col,
+      > [class^="col"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    &_reverse#{$bp} {
+      flex-direction: row-reverse;
+      flex-wrap: wrap-reverse;
+    }
+
+    &_reverseWrap#{$bp} {
+      flex-wrap: wrap-reverse;
+    }
+
+    @each $name, $value in $justifiers {
+      &_justify#{capitalize($name)}#{$bp} {
+        justify-content: $value;
+      }
+    }
+
+    @each $name, $value in $aligners {
+      &_alignItems#{capitalize($name)}#{$bp} {
+        align-items: $value;
+      }
+    }
+  }
+}
+
+/*
+  Build out columns for all breakpoints. Classes apply to their breakpoint
+  and up using min-width. The list of breakpoints can be found in _variables.scss.
+
+  The following classes are generated:
+
+  col_auto: Auto sizing column based on content
+  col_align<Start|Center|End>: Vertical alignment of a column
+  col_offset<size>: Offset classes to push columns
+  col_orderFirst: orders column to be first in a row
+  col_orderLast: orders column to be last in a row
+  col_order<size>: orders column based on size number
+
+  All breakpoints receive the above classes suffixed with the breakpoint name:
+  i.e. col_1<Md|Lg>, col_offset1<Md|Lg>
+
+*/
+@mixin build-columns($num-columns, $bp, $gutter) {
+  .col {
+    padding-left: $gutter;
+
+    &_auto#{$bp} {
+      flex: 0 0 auto;
+    }
+
+    &_orderFirst#{$bp} {
+      order: -1;
+    }
+
+    &_orderLast#{$bp} {
+      order: $num-columns + 1;
+    }
+
+    &_centerContent#{$bp} {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    &_0#{$bp} {
+      flex: 0 0 0;
+      padding: 0;
+    }
+
+    @each $name, $value in $aligners {
+      &_align#{capitalize($name)}#{$bp} {
+        align-self: $value;
+      }
+    }
+  }
+
+  @for $index from 0 through $num-columns {
+    // skip 0 as you can't have a 0 width column
+    @if $index > 0 {
+      .col_#{$index}#{$bp} {
+        @include col-width-props($index, $num-columns);
+      }
+    }
+
+    .col_order#{$index}#{$bp} {
+      order: $index;
+    }
+
+    // only build offsets for ($num-columns - 1)
+    // as you can't offset past the last column
+    @if $index != $num-columns {
+      .col_offset#{$index}#{$bp} {
+        @include col-offset-props($index, $num-columns);
+      }
+    }
+  }
+}
+
+// top level mixin to build the grid including all row and column classes
+@mixin build-grid($breakpoint, $num-columns: $grid-num-columns, $gutter: $grid-gutter-width) {
+  @include build-row($breakpoint, $gutter);
+  @include build-columns($num-columns, $breakpoint, $gutter);
+}
+
+
+@include build-grid('', 12, 16px);
+
+@include breakpoint(breakpoint-size(md)) {
+  @include build-grid('Md', 12, 16px);
+}
+
+@include breakpoint(breakpoint-size(lg)) {
+  @include build-grid('Lg', 12, 16px);
+}
+
+@include breakpoint(breakpoint-size(xl)) {
+  @include build-grid('Xl', 12, 24px);
+}

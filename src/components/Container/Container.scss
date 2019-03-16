@@ -1,0 +1,25 @@
+/* ---------------------------------------------
+ Container
+ --
+ A wrapping element contraining children to
+ designated site widths in a viewport
+--------------------------------------------- */
+
+.container {
+  margin: 0 auto;
+  padding: 0 rhythm(2);
+  width: 100%;
+}
+
+@include breakpoint(breakpoint_size('md')) {
+  .container {
+    max-width: 81.6rem;
+    padding: 0 rhythm(3);
+  }
+}
+
+@include breakpoint(breakpoint_size('lg')) {
+  .container {
+    max-width: 104.4rem;
+  }
+}

@@ -1,0 +1,74 @@
+/* ---------------------------------------------
+ Tier
+ --
+ A wrapper for sections, creating vertical rhythm
+ between major parts of a page
+--------------------------------------------- */
+
+.tier {
+  padding: rhythm(6) 0;
+  position: relative;
+}
+
+.tier_colorDarkest {
+  background: $COLOR_DARKEST;
+}
+
+.tier_colorGreyDarkest {
+  background: $COLOR_GREY_DARKEST;
+}
+
+.tier_colorGreyDark {
+  background: $COLOR_GREY_DARK;
+}
+
+.tier_largeTopSm {
+  padding-top: 28.8rem;
+}
+
+.tier_top10Sm {
+  padding-top: rhythm(10);
+}
+
+.tier-content {
+  position: relative;
+  z-index: 1;
+}
+
+.tier_underNav {
+  padding-top: rhythm(10);
+}
+
+@include breakpoint(breakpoint_size('md')) {
+  .tier,
+  .tier_top10Sm,
+  .tier_largeTopSm {
+    padding: 10rem 0;
+  }
+
+  .tier_xLarge {
+    padding: 32rem 0;
+  }
+
+  .tier_underNav {
+    padding-top: 15rem;
+  }
+}
+
+@include breakpoint(breakpoint_size('lg')) {
+  .tier {
+    padding: 12.4rem 0;
+  }
+
+  .tier_largeLg {
+    padding: 20.3rem 0;
+  }
+
+  .tier_xLarge {
+    padding: 37rem 0;
+  }
+
+  .tier_underNav {
+    padding-top: 17rem;
+  }
+}

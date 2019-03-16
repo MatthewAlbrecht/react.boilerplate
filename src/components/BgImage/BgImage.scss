@@ -1,0 +1,29 @@
+/* ---------------------------------------------
+bgImage
+--------------------------------------------- */
+
+.bgImage {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.bgImage_containSm {
+  background-size: contain;
+}
+
+@include breakpoint(breakpoint_size('md')) {
+  .bgImage_containSm {
+    background-size: cover;
+  }
+
+  .bgImage_half {
+    width: 50%;
+  }
+}
