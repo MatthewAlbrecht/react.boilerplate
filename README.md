@@ -1,5 +1,4 @@
-# Specialized Ride Website
-[![CircleCI](https://circleci.com/gh/mondorobot/sbc.ride-website.svg?style=svg&circle-token=295eeba0e83e503bcea0bce13de1711818e7ab70)](https://circleci.com/gh/mondorobot/sbc.ride-website)
+# React Boilerplate with Scss and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
